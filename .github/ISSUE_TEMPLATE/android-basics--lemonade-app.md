@@ -1,7 +1,7 @@
 ---
 name: 'Android Basics: Lemonade app'
 about: Describe this issue template's purpose here.
-title: ''
+title: 'Android Basics: Lemonade app'
 labels: ''
 assignees: ''
 
