@@ -107,7 +107,7 @@ class MainActivity : AppCompatActivity() {
 
         // TODO: When the image is clicked in the DRINK state the state should become RESTART
 
-        // TODO: When the image is clicked in the RESTART state the state sholud become SELECT
+        // TODO: When the image is clicked in the RESTART state the state should become SELECT
 
         // TODO: lastly, before the function terminates we need to set the view elements so that the
         //  UI can reflect the correct state
