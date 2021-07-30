@@ -13,6 +13,8 @@ Pre-requisites
 
 - Complete [Unit 1](https://developer.android.com/courses/android-basics-kotlin/unit-1) of Android Basics in Kotlin
 
+### Screenshot of final app after implementation of //TODO
+
 Lemonade app (start)                                  |  Squeeze 
 :----------------------------------------------------:|:-------------------------:
 ![Alt text](screenshot/select.png?raw=true "select")  |  ![Alt text](screenshot/squeez.png?raw=true "squeeze")
