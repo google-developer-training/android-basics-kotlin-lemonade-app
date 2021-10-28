@@ -28,11 +28,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/lemon_select"
-        android:textSize="18sp"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        app:layout_constraintStart_toStartOf="parent"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/image_lemon_state"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.34" />
 
     <ImageView
         android:id="@+id/image_lemon_state"
