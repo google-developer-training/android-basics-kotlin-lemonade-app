@@ -92,7 +92,7 @@ class MainActivity : AppCompatActivity() {
      */
     private fun clickLemonImage() {
         // TODO: use a conditional statement like 'if' or 'when' to track the lemonadeState
-        //  when the the image is clicked we may need to change state to the next step in the
+        //  when the image is clicked we may need to change state to the next step in the
         //  lemonade making progression (or at least make some changes to the current state in the
         //  case of squeezing the lemon). That should be done in this conditional statement
 
