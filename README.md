@@ -25,3 +25,14 @@ Tips
 
 - Use the provided tests to ensure your app is running as expected
 - DO NOT ALTER THE PROVIDED TESTS
+
+
+
+# 🍋
+YAYYYY IT WORKED AFTER 3 ATTEMPTS which equivalents to almost 8 hours.... 
+
+The most difficult part wsaa the clicklemonimage function because I googled my way through BUT my solution actually worked, though what I got from it was a reminder that order matters when it comes to executing commands
+
+The setviewelements function was fun to write because I knew it used a when-function and by calling the string-ids, only I figured how to use it before I found that there was a tutorial that came with it LOL 
+
+Modifying the views and constraints was not an issue at all, I almost forgot I did them 
