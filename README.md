@@ -25,3 +25,12 @@ Tips
 
 - Use the provided tests to ensure your app is running as expected
 - DO NOT ALTER THE PROVIDED TESTS
+
+
+
+# 🍋
+YAYYYY IT WORKED AFTER 3 ATTEMPTS 
+
+
+and sitting in front of a computer for almost 6 hours
+also the debugging process is so much fun 
