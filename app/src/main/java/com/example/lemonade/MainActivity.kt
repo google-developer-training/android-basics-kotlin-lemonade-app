@@ -116,29 +116,30 @@ class MainActivity : AppCompatActivity() {
 
         when(lemonadeState){
             SELECT -> {
-                lemonTree.pick()
-                squeezeCount = 0
                 lemonadeState = SQUEEZE
+                lemonSize = lemonTree.pick()
+                squeezeCount = 0
             }
             SQUEEZE -> {
-                squeezeCount ++
-                lemonSize --
-                if(lemonSize == 0){
-                    lemonadeState = DRINK
-                    lemonSize = -1
-                } else{
-                    SQUEEZE
+                squeezeCount +=1
+                lemonSize -= 1
+                when(lemonSize){
+                    0 -> {
+                        lemonadeState = DRINK
+                        lemonSize = -1
+                    }
                 }
             }
             DRINK -> {
-                lemonSize --
+                lemonSize -= 1
                 lemonadeState = RESTART
             }
-            RESTART -> SELECT
+            RESTART ->{
+                lemonadeState = SELECT
+            }
         }
         setViewElements()
     }
-
 
     /**
      * Set up the view elements according to the state.
@@ -156,20 +157,21 @@ class MainActivity : AppCompatActivity() {
 
          when(lemonadeState){
              SELECT -> {
-                 lemonImage?.setImageResource(R.drawable.lemon_tree)
                  textAction.text = getString(R.string.lemon_select)
+                 lemonImage?.setImageResource(R.drawable.lemon_tree)
+
              }
              SQUEEZE ->{
-                 lemonImage?.setImageResource(R.drawable.lemon_squeeze)
                  textAction.text = getString(R.string.lemon_squeeze)
+                 lemonImage?.setImageResource(R.drawable.lemon_squeeze)
              }
              DRINK -> {
-                 lemonImage?.setImageResource(R.drawable.lemon_drink)
                  textAction.text = getString(R.string.lemon_drink)
+                 lemonImage?.setImageResource(R.drawable.lemon_drink)
              }
              RESTART -> {
-                 lemonImage?.setImageResource(R.drawable.lemon_restart)
                  textAction.text = getString(R.string.lemon_empty_glass)
+                 lemonImage?.setImageResource(R.drawable.lemon_restart)
              }
          }
 
