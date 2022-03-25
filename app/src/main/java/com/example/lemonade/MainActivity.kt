@@ -121,8 +121,8 @@ class MainActivity : AppCompatActivity() {
                 squeezeCount = 0
             }
             SQUEEZE -> {
-                squeezeCount +=1
-                lemonSize -= 1
+                squeezeCount ++
+                lemonSize --
                 when(lemonSize){
                     0 -> {
                         lemonadeState = DRINK
@@ -159,7 +159,6 @@ class MainActivity : AppCompatActivity() {
              SELECT -> {
                  textAction.text = getString(R.string.lemon_select)
                  lemonImage?.setImageResource(R.drawable.lemon_tree)
-
              }
              SQUEEZE ->{
                  textAction.text = getString(R.string.lemon_squeeze)
