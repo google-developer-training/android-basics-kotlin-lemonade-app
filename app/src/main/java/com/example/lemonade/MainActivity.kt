@@ -20,6 +20,7 @@ import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
 import com.google.android.material.snackbar.Snackbar
+import java.sql.Driver
 
 class MainActivity : AppCompatActivity() {
 
@@ -90,21 +91,21 @@ class MainActivity : AppCompatActivity() {
      * This method determines the state and proceeds with the correct action.
      */
     private fun clickLemonImage() {
-        // TODO: use a conditional statement like 'if' or 'when' to track the lemonadeState
-        //  when the image is clicked we may need to change state to the next step in the
-        //  lemonade making progression (or at least make some changes to the current state in the
-        //  case of squeezing the lemon). That should be done in this conditional statement
-        when(LEMONADE_STATE){
+
+        when(lemonadeState){
             SELECT -> {
                 lemonadeState = SQUEEZE
                 lemonSize = lemonTree.pick()
+                squeezeCount = 0
                 setViewElements()
             }
             SQUEEZE -> {
-                lemonadeState = DRINK
                 squeezeCount++
                 lemonSize--
-                setViewElements()
+                if (lemonSize == 0) {
+                    lemonadeState = DRINK
+                    setViewElements()
+                }
             }
             DRINK -> {
                 lemonadeState = RESTART
@@ -112,11 +113,15 @@ class MainActivity : AppCompatActivity() {
             }
             RESTART -> {
                 lemonadeState = SELECT
-                lemonSize = -1
-                squeezeCount = -1
                 setViewElements()
             }
+
         }
+        // TODO: use a conditional statement like 'if' or 'when' to track the lemonadeState
+        //  when the image is clicked we may need to change state to the next step in the
+        //  lemonade making progression (or at least make some changes to the current state in the
+        //  case of squeezing the lemon). That should be done in this conditional statement
+
         // TODO: When the image is clicked in the SELECT state, the state should become SQUEEZE
         //  - The lemonSize variable needs to be set using the 'pick()' method in the LemonTree class
         //  - The squeezeCount should be 0 since we haven't squeezed any lemons just yet.
@@ -139,6 +144,26 @@ class MainActivity : AppCompatActivity() {
      */
     private fun setViewElements() {
         val textAction: TextView = findViewById(R.id.text_action)
+
+
+        when(lemonadeState){
+            SELECT -> {
+                textAction.text = getString(R.string.lemon_select)
+                lemonImage!!.setImageResource(R.drawable.lemon_tree)
+            }
+            SQUEEZE -> {
+                textAction.text = getString(R.string.lemon_squeeze)
+                lemonImage!!.setImageResource(R.drawable.lemon_squeeze)
+            }
+            DRINK -> {
+                textAction.text = getString(R.string.lemon_drink)
+                lemonImage!!.setImageResource(R.drawable.lemon_drink)
+            }
+            RESTART -> {
+                textAction.text = getString(R.string.lemon_empty_glass)
+                lemonImage!!.setImageResource(R.drawable.lemon_restart)
+            }
+        }
         // TODO: set up a conditional that tracks the lemonadeState
 
         // TODO: for each state, the textAction TextView should be set to the corresponding string from
