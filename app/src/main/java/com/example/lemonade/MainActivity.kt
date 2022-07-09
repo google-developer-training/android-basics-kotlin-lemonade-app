@@ -66,11 +66,10 @@ class MainActivity : AppCompatActivity() {
         lemonImage = findViewById(R.id.image_lemon_state)
         setViewElements()
         lemonImage!!.setOnClickListener {
-            // TODO: call the method that handles the state when the image is clicked
+            clickLemonImage()
         }
         lemonImage!!.setOnLongClickListener {
-            // TODO: replace 'false' with a call to the function that shows the squeeze count
-            false
+            showSnackbar()
         }
     }
 
@@ -95,7 +94,29 @@ class MainActivity : AppCompatActivity() {
         //  when the image is clicked we may need to change state to the next step in the
         //  lemonade making progression (or at least make some changes to the current state in the
         //  case of squeezing the lemon). That should be done in this conditional statement
-
+        when(LEMONADE_STATE){
+            SELECT -> {
+                lemonadeState = SQUEEZE
+                lemonSize = lemonTree.pick()
+                setViewElements()
+            }
+            SQUEEZE -> {
+                lemonadeState = DRINK
+                squeezeCount++
+                lemonSize--
+                setViewElements()
+            }
+            DRINK -> {
+                lemonadeState = RESTART
+                setViewElements()
+            }
+            RESTART -> {
+                lemonadeState = SELECT
+                lemonSize = -1
+                squeezeCount = -1
+                setViewElements()
+            }
+        }
         // TODO: When the image is clicked in the SELECT state, the state should become SQUEEZE
         //  - The lemonSize variable needs to be set using the 'pick()' method in the LemonTree class
         //  - The squeezeCount should be 0 since we haven't squeezed any lemons just yet.
