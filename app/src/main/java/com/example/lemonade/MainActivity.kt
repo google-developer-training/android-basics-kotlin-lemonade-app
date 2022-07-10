@@ -20,7 +20,6 @@ import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
 import com.google.android.material.snackbar.Snackbar
-import java.sql.Driver
 
 class MainActivity : AppCompatActivity() {
 
@@ -72,6 +71,9 @@ class MainActivity : AppCompatActivity() {
         lemonImage!!.setOnLongClickListener {
             showSnackbar()
         }
+
+
+
     }
 
     /**
@@ -164,14 +166,6 @@ class MainActivity : AppCompatActivity() {
                 lemonImage!!.setImageResource(R.drawable.lemon_restart)
             }
         }
-        // TODO: set up a conditional that tracks the lemonadeState
-
-        // TODO: for each state, the textAction TextView should be set to the corresponding string from
-        //  the string resources file. The strings are named to match the state
-
-        // TODO: Additionally, for each state, the lemonImage should be set to the corresponding
-        //  drawable from the drawable resources. The drawables have the same names as the strings
-        //  but remember that they are drawables, not strings.
     }
 
     /**
