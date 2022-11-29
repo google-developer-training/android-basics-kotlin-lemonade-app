@@ -26,16 +26,15 @@ import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.NoMatchingViewException
 import androidx.test.espresso.ViewInteraction
 import androidx.test.espresso.action.ViewActions.click
+import androidx.test.espresso.action.ViewActions.longClick
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.BoundedMatcher
-import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.espresso.matcher.ViewMatchers.withId
-import androidx.test.ext.junit.rules.ActivityScenarioRule
+import androidx.test.espresso.matcher.ViewMatchers.withText
 import com.example.lemonade.DrawableMatcher.withDrawable
 import org.hamcrest.Description
 import org.hamcrest.Matcher
-import org.junit.Rule
 
 /**
  * The lemonade app is effectively a state machine.
@@ -52,9 +51,9 @@ open class BaseTest {
      */
     fun testState(textActionResource: Int, drawableResource: Int) {
         onView(withId(R.id.text_action))
-            .check(matches(ViewMatchers.withText(textActionResource)))
-        onView(withId(R.id.image_lemon_state)).check(
-            matches(withDrawable(drawableResource)))
+            .check(matches(withText(textActionResource)))
+        onView(withId(R.id.image_lemon_state))
+            .check(matches(withDrawable(drawableResource)))
     }
 
     /**
@@ -72,8 +71,24 @@ open class BaseTest {
      */
     fun juiceLemon() {
         while (onView(withDrawable(R.drawable.lemon_squeeze)).isPresent()) {
-            onView(withId(R.id.image_lemon_state)).perform(click())
+            squeezeLemon()
         }
+    }
+
+    /**
+     * Squeeze the lemon once.
+     */
+    fun squeezeLemon() {
+        onView(withId(R.id.image_lemon_state)).perform(click())
+    }
+
+    /**
+     * Click and hold the lemon to show a snackbar which
+     * displays how many times the lemon was squeezed.
+     */
+    fun showSqueezeCount() {
+        onView(withDrawable(R.drawable.lemon_squeeze))
+            .perform(longClick())
     }
 
     /**
