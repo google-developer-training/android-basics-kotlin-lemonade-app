@@ -17,8 +17,6 @@ package com.example.lemonade
 
 import androidx.test.core.app.launchActivity
 import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.action.ViewActions.click
-import androidx.test.espresso.action.ViewActions.longClick
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.espresso.matcher.ViewMatchers.withText
@@ -44,7 +42,7 @@ class LemonadeTests : BaseTest() {
      * Test the view components of the pick lemon state
      */
     @Test
-    fun `test_initial_state`() {
+    fun test_initial_state() {
         testState(R.string.lemon_select, R.drawable.lemon_tree)
     }
 
@@ -52,9 +50,9 @@ class LemonadeTests : BaseTest() {
      * Test that the pick lemon functionality takes us to the "squeeze state"
      */
     @Test
-    fun `test_picking_lemon_proceeds_to_squeeze_state`() {
+    fun test_picking_lemon_proceeds_to_squeeze_state() {
         // Click image to progress state
-        onView(withId(R.id.image_lemon_state)).perform(click())
+        pickLemon()
         testState(R.string.lemon_squeeze, R.drawable.lemon_squeeze)
     }
 
@@ -62,9 +60,10 @@ class LemonadeTests : BaseTest() {
      * Test that the squeeze functionality takes us to the "drink state"
      */
     @Test
-    fun `test_squeezing_lemon_proceeds_to_drink_state`() {
+    fun test_squeezing_lemon_proceeds_to_drink_state() {
         // Click image to progress state
-        onView(withId(R.id.image_lemon_state)).perform(click())
+        pickLemon()
+        // Click image to progress state
         juiceLemon()
         testState(R.string.lemon_drink, R.drawable.lemon_drink)
     }
@@ -73,14 +72,14 @@ class LemonadeTests : BaseTest() {
      * Test squeeze count snackbar
      */
     @Test
-    fun `test_squeeze_count_snackbar_is_displayed`() {
+    fun test_squeeze_count_snackbar_is_displayed() {
         // Click image to progress state
-        onView(withId(R.id.image_lemon_state)).perform(click())
+        pickLemon()
         // Click image to progress state
-        onView(withId(R.id.image_lemon_state)).perform(click())
-        // Click image to progress state
-        onView(withId(R.id.image_lemon_state)).perform(longClick())
-        onView(withId(com.google.android.material.R.id.snackbar_text))
+        squeezeLemon()
+        // Click and hold image to show snackbar
+        showSqueezeCount()
+        onView(withId(R.id.snackbar_text))
             .check(matches(withText("Squeeze count: 1, keep squeezing!")))
     }
 
@@ -88,12 +87,13 @@ class LemonadeTests : BaseTest() {
      * Test that the drink functionality takes us to the "restart state"
      */
     @Test
-    fun `test_drinking_juice_proceeds_to_restart_state`() {
+    fun test_drinking_juice_proceeds_to_restart_state() {
         // Click image to progress state
-        onView(withId(R.id.image_lemon_state)).perform(click())
+        pickLemon()
+        // Click image to progress state
         juiceLemon()
-        onView(withId(R.id.image_lemon_state)).perform(click())
         // Click image to progress state
+        drinkJuice()
         testState(R.string.lemon_empty_glass, R.drawable.lemon_restart)
     }
 
@@ -101,14 +101,15 @@ class LemonadeTests : BaseTest() {
      * Test that the restart functionality takes us back to the "pick lemon state"
      */
     @Test
-    fun `test_restarting_proceeds_to_pick_lemon_state`() {
+    fun test_restarting_proceeds_to_pick_lemon_state() {
         // Click image to progress state
-        onView(withId(R.id.image_lemon_state)).perform(click())
+        pickLemon()
+        // Click image to progress state
         juiceLemon()
         // Click image to progress state
-        onView(withId(R.id.image_lemon_state)).perform(click())
+        drinkJuice()
         // Click image to progress state
-        onView(withId(R.id.image_lemon_state)).perform(click())
+        restart()
         testState(R.string.lemon_select, R.drawable.lemon_tree)
     }
 }
